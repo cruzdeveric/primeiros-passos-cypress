@@ -13,7 +13,7 @@ wrongCredentialAlert: "[role='alert']"
 }
 
   it('Login-success', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.visit('/auth/login')
     cy.get(selectorslist.usernameField).type(userData.userSucess.username)
     cy.get(selectorslist.passwordField).type(userData.userSucess.password)
     cy.get(selectorslist.loginButton).click()
@@ -21,7 +21,7 @@ wrongCredentialAlert: "[role='alert']"
     cy.get(selectorslist.dashboardGrid)
   })
 it('Login-fail', () => {
-  cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+  cy.visit('/auth/login')
   cy.get(selectorslist.usernameField).type(userData.userFail.username)
   cy.get(selectorslist.passwordField).type(userData.userFail.password)
   cy.get(selectorslist.loginButton).click()
