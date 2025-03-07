@@ -5,7 +5,9 @@ usernameField: "[name='username']",
 passwordField: "[name='password']",
 loginButton: "[type='submit']",
 sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module",
+dashboardGrid: ".orangehrm-dashboard-grid",
 wrongCredentialAlert: "[role='alert']"
+
 }
 
   it('Login-success', () => {
@@ -14,7 +16,7 @@ wrongCredentialAlert: "[role='alert']"
     cy.get(selectorslist.passwordField).type('admin123')
     cy.get(selectorslist.loginButton).click()
     cy.location('pathname').should('equal','/web/index.php/dashboard/index')
-    cy.get(selectorslist.sectionTitleTopBar).contains('Dashboard')
+    cy.get(selectorslist.dashboardGrid)
   })
 it('Login-fail', () => {
   cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
