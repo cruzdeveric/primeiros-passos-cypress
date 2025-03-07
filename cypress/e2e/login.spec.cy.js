@@ -1,17 +1,26 @@
 describe('Orange HRM Tests', () => {
+
+const selectorslist = {
+usernameField: "[name='username']",
+passwordField: "[name='password']",
+loginButton: "[type='submit']",
+sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module",
+wrongCredentialAlert: "[role='alert']"
+}
+
   it('Login-success', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get("[name='username']").type('Admin')
-    cy.get("[name='password']").type('admin123')
-    cy.get("[type='submit']").click()
+    cy.get(selectorslist.usernameField).type('Admin')
+    cy.get(selectorslist.passwordField).type('admin123')
+    cy.get(selectorslist.loginButton).click()
     cy.location('pathname').should('equal','/web/index.php/dashboard/index')
-    cy.get(".oxd-topbar-header-breadcrumb-module").contains('Dashboard')
+    cy.get(selectorslist.sectionTitleTopBar).contains('Dashboard')
   })
 it('Login-fail', () => {
   cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-  cy.get("[name='username']").type('test')
-  cy.get("[name='password']").type('test')
-  cy.get("[type='submit']").click()
-  cy.get("[role='alert']")
+  cy.get(selectorslist.usernameField).type('test')
+  cy.get(selectorslist.passwordField).type('test')
+  cy.get(selectorslist.loginButton).click()
+  cy.get(selectorslist.wrongCredentialAlert)
 })
 })
