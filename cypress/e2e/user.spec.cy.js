@@ -12,7 +12,11 @@ wrongCredentialAlert: "[role='alert']",
 myInfoButton:'[href="/web/index.php/pim/viewMyDetails"]',
 firstNameField: "[name='firstName']",
 lastNameField:"[name='lastName']",
-nickNameField:".oxd-input--active",
+genericField:".oxd-input--active",
+dateField:"[placeholder='yyyy-dd-mm']",
+dateclosebutton: ".--close",
+saveButton: "[type='submit']"
+
 }
 
   it.only('Login-success', () => {
@@ -23,7 +27,15 @@ nickNameField:".oxd-input--active",
     cy.location('pathname').should('equal','/web/index.php/dashboard/index')
     cy.get(selectorslist.dashboardGrid)
     cy.get(selectorslist.myInfoButton).click()
-  cy.get(selectorslist.nickNameField).eq(4).type('NicknameTest')
+    cy.get(selectorslist.firstNameField).clear().type('Firstnametest')
+    cy.get(selectorslist.lastNameField).clear().type('LastnameTest')
+    cy.get(selectorslist.genericField).eq(3).clear().type('EmployID')
+    cy.get(selectorslist.genericField).eq(4).clear().type('OTHERID')
+    cy.get(selectorslist.genericField).eq(5).clear().type('15141822')
+    cy.get(selectorslist.genericField).eq(6).type('2024-19-03')
+    cy.get(selectorslist.dateclosebutton).click()
+    cy.get(selectorslist.saveButton).eq(0).click()
+
 })
 it('Login-fail', () => {
   cy.visit('/auth/login')
